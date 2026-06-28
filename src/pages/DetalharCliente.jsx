@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Row, Col, Spinner, Alert, Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Row, Col, Spinner, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { apiService } from '../mocks/apiService';
 import BlocoInfo from '../components/BlocoInfo';
 import BotaoAcao from '../components/BotaoAcao';

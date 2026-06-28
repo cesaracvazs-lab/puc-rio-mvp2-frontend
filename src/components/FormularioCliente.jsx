@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+
+const criarDadosIniciais = (dadosIniciais) => ({
+  nome: dadosIniciais?.nome ?? '',
+  email: dadosIniciais?.email ?? '',
+  telefone: dadosIniciais?.telefone ?? '',
+  status: dadosIniciais?.status ?? 'Ativo'
+});
 
 const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
   // Estado para gerenciar os campos do formulário de forma unificada
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    telefone: '',
-    status: 'Ativo'
-  });
+  const [formData, setFormData] = useState(() => criarDadosIniciais(dadosIniciais));
 
   const [isLoading, setIsLoading] = useState(false);
   const [validated, setValidated] = useState(false);
-
-  // Efeito para monitorar se dadosIniciais foram passados (Cenário de Edição)
-  useEffect(() => {
-    if (dadosIniciais) {
-      setFormData(dadosIniciais);
-    }
-  }, [dadosIniciais]);
 
   // Manipulador genérico para atualizar o estado ao digitar
   const handleChange = (e) => {

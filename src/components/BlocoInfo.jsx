@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'react-bootstrap';
 
 const BlocoInfo = ({ icone, rotulo, valor }) => {

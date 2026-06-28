@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const BotaoAcao = ({ texto, variante, icone, onClick, className }) => {

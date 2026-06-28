@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Col, Form, InputGroup, Spinner, Alert } from 'react-bootstrap';
 import { apiService } from '../mocks/apiService';
 import CardCliente from '../components/CardCliente';

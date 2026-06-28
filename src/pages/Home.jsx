@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormularioCliente from '../components/FormularioCliente';
 import { apiService } from '../mocks/apiService';
@@ -12,7 +11,7 @@ const Home = () => {
       await apiService.incluir(novoCliente);
       
       // Feedback visual simples e direto
-      alert('Cliente incluído com sucesso no sistema!');
+      alert('Cliente incluído com sucesso!');
       
       // Redirecionamento de fluxo exigido pelos critérios de roteamento
       navigate('/clientes');

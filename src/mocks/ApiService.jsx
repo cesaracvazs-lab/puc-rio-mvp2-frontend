@@ -1,5 +1,8 @@
 import dadosMock from './dadosMock.json';
 
+// let bancoEmMemoria = window.bancoEmMemoria || JSON.parse(JSON.stringify(dadosMock));
+// window.bancoEmMemoria = bancoEmMemoria;
+
 if (!window.bancoEmMemoria) {
   window.bancoEmMemoria = JSON.parse(JSON.stringify(dadosMock)); // Cópia limpa e profunda do JSON
 }

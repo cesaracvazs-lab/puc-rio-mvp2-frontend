@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Spinner, Alert } from 'react-bootstrap';
 import FormularioCliente from '../components/FormularioCliente';
@@ -85,6 +85,7 @@ const EditarCliente = () => {
         por causa da presença da prop `dadosIniciais`.
       */}
       <FormularioCliente 
+        key={cliente.id}
         dadosIniciais={cliente} 
         onSubmit={handleEditar} 
         textoBotao="💾 Salvar Alterações" 
