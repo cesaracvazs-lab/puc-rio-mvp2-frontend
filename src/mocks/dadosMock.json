@@ -1,0 +1,5 @@
+[
+  { "id": "1", "nome": "Carlos Silva", "email": "carlos@email.com", "telefone": "(11) 98888-7777", "status": "Ativo" },
+  { "id": "2", "nome": "Ana Souza", "email": "ana@email.com", "telefone": "(21) 99999-8888", "status": "Ativo" },
+  { "id": "3", "nome": "Marcos Lima", "email": "marcos@email.com", "telefone": "(31) 97777-6666", "status": "Inativo" }
+]
