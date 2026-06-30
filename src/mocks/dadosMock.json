@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "nome": "Carlos Siqueira",
+    "email": "carlos@email.com",
+    "telefone": "(11) 98888-7777",
+    "status": "Ativo",
+    "cidade": "Rio de Janeiro",
+    "sexo": "Masculino",
+    "dataNascimento": "1988-03-12"
+  },
+  {
+    "id": "2",
+    "nome": "Elisa Costa",
+    "email": "ecost@email.com",
+    "telefone": "(21) 99999-8888",
+    "status": "Ativo",
+    "cidade": "São Paulo",
+    "sexo": "Feminino",
+    "dataNascimento": "1995-10-21"
+  },
+  {
+    "id": "3",
+    "nome": "Eduardo do Banjo",
+    "email": "duds@email.com",
+    "telefone": "(31) 97777-6666",
+    "status": "Inativo",
+    "cidade": "Belo Horizonte",
+    "sexo": "Masculino",
+    "dataNascimento": "1991-04-05"
+  }
+]
