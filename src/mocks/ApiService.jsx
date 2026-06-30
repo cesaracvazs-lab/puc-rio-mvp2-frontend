@@ -1,23 +1,18 @@
 import dadosMock from './dadosMock.json';
 
-// let bancoEmMemoria = window.bancoEmMemoria || JSON.parse(JSON.stringify(dadosMock));
-// window.bancoEmMemoria = bancoEmMemoria;
-
 if (!window.bancoEmMemoria) {
-  window.bancoEmMemoria = JSON.parse(JSON.stringify(dadosMock)); // Cópia limpa e profunda do JSON
+  window.bancoEmMemoria = dadosMock;
 }
 
 export const apiService = {
-  // Simula o método GET (Listagem) com atraso de rede
   listar: () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([...bancoEmMemoria]);
-      }, 600); // 600ms de atraso para forçar a renderização do Spinner de carregamento
+      }, 600);
     });
   },
 
-  // Simula o método GET por ID (Detalhes/Edição)
   buscarPorId: (id) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -27,7 +22,6 @@ export const apiService = {
     });
   },
 
-  // Simula o método POST (Inclusão)
   incluir: (novoCliente) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -41,11 +35,10 @@ export const apiService = {
     });
   },
 
-  // Simula o método PUT (Edição)
   editar: (id, dadosAtualizados) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        bancoEmMemoria = bancoEmMemoria.map(c => 
+        bancoEmMemoria = bancoEmMemoria.map(c =>
           c.id === id.toString() ? { ...c, ...dadosAtualizados, id: id.toString() } : c
         );
         resolve(true);

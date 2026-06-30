@@ -6,14 +6,12 @@ import BotaoAcao from '../components/BotaoAcao';
 import { apiService } from '../mocks/ApiService';
 
 const EditarCliente = () => {
-  const { id } = useParams(); // Hook obrigatório: captura o ID do cliente na URL
-  const navigate = useNavigate(); // Hook obrigatório: redireciona após a ação
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  // Estados para controle de ciclo de vida e renderização condicional
   const [cliente, setCliente] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Efeito assíncrono para carregar os dados atuais do cliente ao montar a tela
   useEffect(() => {
     const obterDadosCliente = async () => {
       try {
@@ -23,29 +21,25 @@ const EditarCliente = () => {
       } catch (error) {
         console.error("Erro ao carregar dados para edição:", error);
       } finally {
-        setLoading(false); // Remove o indicador visual de carregamento
+        setLoading(false);
       }
     };
 
     obterDadosCliente();
   }, [id]);
 
-  // Função disparada pelo componente de formulário após as validações
   const handleEditar = async (dadosAtualizados) => {
     try {
-      // Envia a atualização assíncrona para o nosso banco em memória
       await apiService.editar(id, dadosAtualizados);
-      
+
       alert('Cadastro modificado com sucesso!');
-      
-      // Redireciona o usuário para a ficha detalhada do cliente atualizado
+
       navigate(`/cliente/${id}`);
     } catch (error) {
       console.error("Erro ao salvar alterações:", error);
     }
   };
 
-  // Condicional 1: Exibe o Spinner durante a busca inicial (Requisito de Usabilidade)
   if (loading) {
     return (
       <div className="text-center my-5 p-5">
@@ -55,7 +49,6 @@ const EditarCliente = () => {
     );
   }
 
-  // Condicional 2: Exibe Alerta se o usuário forçar na URL um ID inexistente
   if (!cliente) {
     return (
       <Alert variant="danger" className="text-center shadow-sm my-4">
@@ -68,7 +61,6 @@ const EditarCliente = () => {
 
   return (
     <div className="container" style={{ maxWidth: '800px' }}>
-      {/* Cabeçalho da Página */}
       <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 pb-3 border-bottom">
         <div>
           <h2 className="fw-bold text-dark mb-1">📝 Editar Cadastro</h2>
@@ -79,16 +71,11 @@ const EditarCliente = () => {
         </div>
       </div>
 
-      {/* 
-        Injeta o FormularioCliente reutilizável passando os dados iniciais. 
-        O componente interno sabe que deve se comportar em modo "Edição" 
-        por causa da presença da prop `dadosIniciais`.
-      */}
-      <FormularioCliente 
+      <FormularioCliente
         key={cliente.id}
-        dadosIniciais={cliente} 
-        onSubmit={handleEditar} 
-        textoBotao="💾 Salvar Alterações" 
+        dadosIniciais={cliente}
+        onSubmit={handleEditar}
+        textoBotao="💾 Salvar Alterações"
       />
     </div>
   );

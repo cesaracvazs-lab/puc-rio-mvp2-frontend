@@ -9,13 +9,11 @@ const criarDadosIniciais = (dadosIniciais) => ({
 });
 
 const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
-  // Estado para gerenciar os campos do formulário de forma unificada
   const [formData, setFormData] = useState(() => criarDadosIniciais(dadosIniciais));
 
   const [isLoading, setIsLoading] = useState(false);
   const [validated, setValidated] = useState(false);
 
-  // Manipulador genérico para atualizar o estado ao digitar
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -24,7 +22,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
     }));
   };
 
-  // Envio do formulário com validação nativa do Bootstrap
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -38,12 +35,10 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
     setValidated(true);
     setIsLoading(true);
 
-    // Simula um pequeno atraso de rede (ganha pontos em Usabilidade/Feedback)
     setTimeout(() => {
       onSubmit(formData);
       setIsLoading(false);
       if (!dadosIniciais) {
-        // Se for inclusão, limpa os campos após o envio
         setFormData({ nome: '', email: '', telefone: '', status: 'Ativo' });
         setValidated(false);
       }
@@ -53,7 +48,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
       <Row className="mb-3">
-        {/* Campo Nome */}
         <Form.Group as={Col} md="12" controlId="formNome" className="mb-3">
           <Form.Label className="fw-semibold">Nome Completo</Form.Label>
           <Form.Control
@@ -69,7 +63,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Campo E-mail */}
         <Form.Group as={Col} md="6" controlId="formEmail" className="mb-3">
           <Form.Label className="fw-semibold">E-mail</Form.Label>
           <Form.Control
@@ -85,7 +78,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Campo Telefone */}
         <Form.Group as={Col} md="6" controlId="formTelefone" className="mb-3">
           <Form.Label className="fw-semibold">Telefone</Form.Label>
           <Form.Control
@@ -101,7 +93,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        {/* Campo Status (Select) */}
         <Form.Group as={Col} md="12" controlId="formStatus" className="mb-3">
           <Form.Label className="fw-semibold">Status do Cadastro</Form.Label>
           <Form.Select name="status" value={formData.status} onChange={handleChange}>
@@ -111,7 +102,6 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
         </Form.Group>
       </Row>
 
-      {/* Botão de Ação Dinâmico */}
       <Button type="submit" variant="primary" className="w-100 py-2 fw-bold" disabled={isLoading}>
         {isLoading ? (
           <>
