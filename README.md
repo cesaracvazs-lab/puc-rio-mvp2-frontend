@@ -1,16 +1,67 @@
-# React + Vite
+# Gerenciador de Clientes - Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é o front-end de uma aplicação React para gestão de clientes, desenvolvida com Vite, React Router e Bootstrap. A interface permite incluir, listar, visualizar e editar cadastros de clientes, com dados simulados em um mock local.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Cadastro de novos clientes
+- Listagem com busca por nome
+- Visualização detalhada de clientes
+- Edição de dados cadastrais
+- Feedback visual para carregamento e ausência de resultados
+- Navegação entre páginas com rotas configuradas
 
-## React Compiler
+## Tecnologias utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- React Router DOM
+- React Bootstrap
+- Bootstrap
 
-## Expanding the ESLint configuration
+## Pré-requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Antes de executar o projeto, certifique-se de ter instalado:
+
+- Node.js 18 ou superior
+- npm
+
+## Instalação
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/cesaracvazs-lab/puc-rio-mvp2-frontend.git
+   ```
+2. Acesse a pasta do projeto:
+   ```bash
+   cd puc-rio-mvp2-frontend
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+## Como executar
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+A aplicação ficará disponível no navegador em:
+
+```text
+http://localhost:5173
+```
+
+## Estrutura principal
+
+- src/components: componentes reutilizáveis como header, formulário e cards
+- src/pages: páginas da aplicação
+- src/routes: configuração das rotas
+- src/mocks: dados simulados e camada de mock da API
+
+## Observação
+
+As operações de leitura e escrita são simuladas com dados locais para fins de demonstração do MVP.

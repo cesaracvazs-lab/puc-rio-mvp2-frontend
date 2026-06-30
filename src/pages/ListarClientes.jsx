@@ -25,22 +25,20 @@ const ListarClientes = () => {
   }, []);
 
   const clientesFiltrados = clientes.filter((cliente) =>
-    cliente.nome.toLowerCase().includes(termoBusca.toLowerCase()) ||
-    cliente.email.toLowerCase().includes(termoBusca.toLowerCase())
+    cliente.nome.toLowerCase().includes(termoBusca.toLowerCase())
   );
 
   return (
     <div className="container">
       <div className="mb-4">
-        <h2 className="fw-bold text-dark">📋 Listagem de Clientes</h2>
-        <p className="text-muted">Gerencie os cadastros ativos e inativos da sua base de dados.</p>
+        <h2 className="fw-bold text-dark">Lista de Clientes</h2>
       </div>
 
       <Form className="mb-4">
         <InputGroup className="shadow-sm">
           <InputGroup.Text bg="light" id="search-icon">🔍</InputGroup.Text>
           <Form.Control
-            placeholder="Buscar cliente por nome ou e-mail..."
+            placeholder="Buscar cliente por nome..."
             aria-label="Buscar cliente"
             aria-describedby="search-icon"
             value={termoBusca}
@@ -60,7 +58,7 @@ const ListarClientes = () => {
         <>
           {clientesFiltrados.length === 0 ? (
             <Alert variant="warning" className="text-center shadow-sm">
-              🚩 Nenhum cliente encontrado para o termo: <strong>"{termoBusca}"</strong>
+              Nenhum cliente encontrado
             </Alert>
           ) : (
             <Row className="g-4">

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const menuLinks = [
-    { label: 'Início / Incluir', path: '/' },
+    { label: 'Incluir', path: '/' },
     { label: 'Listar Clientes', path: '/clientes' }
   ];
 

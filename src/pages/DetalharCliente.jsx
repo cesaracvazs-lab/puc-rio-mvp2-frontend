@@ -41,7 +41,7 @@ const DetalharCliente = () => {
     return (
       <Alert variant="danger" className="text-center shadow-sm">
         <h4>⚠️ Registro Não Encontrado</h4>
-        <p>O cliente com ID #{id} não foi localizado em nossa base de dados corrente.</p>
+        <p>O cliente com ID #{id} não foi localizado em nossa base de dados.</p>
         <BotaoAcao texto="Voltar para a Lista" variante="danger" icone="⬅️" onClick={() => navigate('/clientes')} />
       </Alert>
     );
@@ -50,10 +50,6 @@ const DetalharCliente = () => {
   return (
     <div className="container">
       <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 pb-3 border-bottom">
-        <div>
-          <h2 className="fw-bold text-dark mb-1">🔍 Ficha do Cliente</h2>
-          <p className="text-muted mb-0">ID do registro: <code className="fw-bold">#{cliente.id}</code></p>
-        </div>
         <div className="d-flex gap-2 mt-3 mt-sm-0">
           <BotaoAcao texto="Voltar" variante="outline-secondary" icone="⬅️" onClick={() => navigate('/clientes')} />
 
@@ -78,13 +74,22 @@ const DetalharCliente = () => {
           <BlocoInfo icone="👤" rotulo="Nome Completo" valor={cliente.nome} />
         </Col>
         <Col xs={12} md={6}>
-          <BlocoInfo icone="⚡" rotulo="Situação Cadastral" valor={cliente.status} />
+          <BlocoInfo rotulo="Situação Cadastral" valor={cliente.status} />
         </Col>
         <Col xs={12} md={6}>
-          <BlocoInfo icone="📧" rotulo="Endereço de E-mail" valor={cliente.email} />
+          <BlocoInfo rotulo="Cidade" valor={cliente.cidade || '—'} />
+        </Col>
+        <Col xs={12} md={6}>
+          <BlocoInfo rotulo="Sexo" valor={cliente.sexo || '—'} />
+        </Col>
+        <Col xs={12} md={6}>
+          <BlocoInfo rotulo="Data de Nascimento" valor={cliente.dataNascimento ? new Date(cliente.dataNascimento).toLocaleDateString('pt-BR') : '—'} />
         </Col>
         <Col xs={12} md={6}>
           <BlocoInfo icone="📞" rotulo="Número de Telefone" valor={cliente.telefone} />
+        </Col>
+        <Col xs={12} md={6}>
+          <BlocoInfo icone="📧" rotulo="Endereço de E-mail" valor={cliente.email} />
         </Col>
       </Row>
     </div>

@@ -5,7 +5,10 @@ const criarDadosIniciais = (dadosIniciais) => ({
   nome: dadosIniciais?.nome ?? '',
   email: dadosIniciais?.email ?? '',
   telefone: dadosIniciais?.telefone ?? '',
-  status: dadosIniciais?.status ?? 'Ativo'
+  status: dadosIniciais?.status ?? 'Ativo',
+  cidade: dadosIniciais?.cidade ?? '',
+  sexo: dadosIniciais?.sexo ?? '',
+  dataNascimento: dadosIniciais?.dataNascimento ?? ''
 });
 
 const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
@@ -14,11 +17,32 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [validated, setValidated] = useState(false);
 
+  const formatarTelefone = (value) => {
+    const somenteNumeros = value.replace(/\D/g, '').slice(0, 11);
+
+    if (somenteNumeros.length <= 2) {
+      return somenteNumeros;
+    }
+
+    if (somenteNumeros.length <= 6) {
+      return `(${somenteNumeros.slice(0, 2)}) ${somenteNumeros.slice(2)}`;
+    }
+
+    if (somenteNumeros.length <= 10) {
+      return `(${somenteNumeros.slice(0, 2)}) ${somenteNumeros.slice(2, 6)}-${somenteNumeros.slice(6)}`;
+    }
+
+    return `(${somenteNumeros.slice(0, 2)}) ${somenteNumeros.slice(2, 7)}-${somenteNumeros.slice(7, 11)}`;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    const valorProcessado = name === 'telefone' ? formatarTelefone(value) : value;
+
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: valorProcessado
     }));
   };
 
@@ -39,7 +63,7 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
       onSubmit(formData);
       setIsLoading(false);
       if (!dadosIniciais) {
-        setFormData({ nome: '', email: '', telefone: '', status: 'Ativo' });
+        setFormData({ nome: '', email: '', telefone: '', status: 'Ativo', cidade: '', sexo: '', dataNascimento: '' });
         setValidated(false);
       }
     }, 800);
@@ -63,6 +87,37 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           </Form.Control.Feedback>
         </Form.Group>
 
+        <Form.Group as={Col} md="6" controlId="formCidade" className="mb-3">
+          <Form.Label className="fw-semibold">Cidade</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Digite a cidade"
+            name="cidade"
+            value={formData.cidade}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group as={Col} md="6" controlId="formSexo" className="mb-3">
+          <Form.Label className="fw-semibold">Sexo</Form.Label>
+          <Form.Select name="sexo" value={formData.sexo} onChange={handleChange}>
+            <option value="">Selecione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group as={Col} md="6" controlId="formDataNascimento" className="mb-3">
+          <Form.Label className="fw-semibold">Data de Nascimento</Form.Label>
+          <Form.Control
+            type="date"
+            name="dataNascimento"
+            value={formData.dataNascimento}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
         <Form.Group as={Col} md="6" controlId="formEmail" className="mb-3">
           <Form.Label className="fw-semibold">E-mail</Form.Label>
           <Form.Control
@@ -82,7 +137,8 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           <Form.Label className="fw-semibold">Telefone</Form.Label>
           <Form.Control
             required
-            type="tel"
+            type="text"
+            inputMode="numeric"
             placeholder="(11) 99999-9999"
             name="telefone"
             value={formData.telefone}
@@ -93,7 +149,7 @@ const FormularioCliente = ({ dadosIniciais, onSubmit, textoBotao }) => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} md="12" controlId="formStatus" className="mb-3">
+        <Form.Group as={Col} md="6" controlId="formStatus" className="mb-3">
           <Form.Label className="fw-semibold">Status do Cadastro</Form.Label>
           <Form.Select name="status" value={formData.status} onChange={handleChange}>
             <option value="Ativo">Ativo</option>

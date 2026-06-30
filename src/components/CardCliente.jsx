@@ -18,10 +18,13 @@ const CardCliente = ({ cliente }) => {
           </div>
 
           <Card.Text className="text-muted mb-1 small">
-            <strong>📧 E-mail:</strong> {cliente.email}
+            <strong>Cidade:</strong> {cliente.cidade || '—'}
+          </Card.Text>
+          <Card.Text className="text-muted mb-1 small">
+            <strong>Sexo:</strong> {cliente.sexo || '—'}
           </Card.Text>
           <Card.Text className="text-muted mb-3 small">
-            <strong>📞 Tel:</strong> {cliente.telefone}
+            <strong>Nasc.:</strong> {cliente.dataNascimento ? new Date(cliente.dataNascimento).toLocaleDateString('pt-BR') : '—'}
           </Card.Text>
         </div>
 
